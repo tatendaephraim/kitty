@@ -1,0 +1,8 @@
+{
+  "name": "Kitty - Autonomous Rotating Savings Circles (PayPal + AI)",
+  "description": "Rotating savings circles (stokvel, mukando, susu) governed by autonomous AI agents and settled directly peer-to-peer on PayPal with deterministic policy guardrails.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
