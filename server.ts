@@ -14,7 +14,9 @@ dotenv.config();
 dotenv.config({ path: path.resolve(__dirname, '.env.local'), override: true });
 
 const app = express();
-const port = process.env.PORT || 3000;
+const isProd = process.env.NODE_ENV === 'production';
+// In Cloud Run production, listen on process.env.PORT (8080). In local dev container, listen on 3000 for nginx proxy.
+const port = isProd ? Number(process.env.PORT || 8080) : 3000;
 
 app.use(express.json());
 
@@ -547,13 +549,28 @@ app.post('/api/paypal/capture-order', async (req, res) => {
 });
 
 // API: PayPal Webhook Receiver
-app.post('/api/paypal/webhook', (req, res) => {
-  const { event_type, resource } = req.body;
-  // Deduplicate and process webhook
-  res.json({
+app.post('/api/paypal/webhook', async (req, res) => {
+  const event = req.body;
+  const webhookId = process.env.PAYPAL_WEBHOOK_ID;
+  const eventType = event.event_type || 'PAYMENT.CAPTURE.COMPLETED';
+  const resource = event.resource || {};
+
+  console.log(`[PayPal Webhook] Received ${eventType} (ID: ${event.id || 'N/A'})`);
+
+  // Extract useful financial metadata if capture or order
+  const captureId = resource.id;
+  const amount = resource.amount?.value;
+  const currency = resource.amount?.currency_code;
+  const customId = resource.custom_id;
+
+  res.status(200).json({
     received: true,
-    eventType: event_type || 'PAYMENT.CAPTURE.COMPLETED',
-    verified: true,
+    eventType,
+    captureId,
+    amount,
+    currency,
+    customId,
+    webhookIdConfigured: Boolean(webhookId),
     processedAt: new Date().toISOString(),
   });
 });
@@ -573,8 +590,8 @@ async function startServer() {
     });
   }
 
-  app.listen(port, () => {
-    console.log(`Kitty backend running on http://localhost:${port}`);
+  app.listen(port, '0.0.0.0', () => {
+    console.log(`Kitty backend running on port ${port} (mode: ${isProd ? 'production' : 'development'})`);
   });
 }
 
