@@ -3,12 +3,11 @@ import { User } from '../types/kitty';
 import {
   ShieldCheck,
   CreditCard,
-  Video,
-  FileCode2,
   RotateCcw,
   Sparkles,
   ChevronDown,
   Wrench,
+  Image as ImageIcon,
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -16,9 +15,10 @@ interface HeaderProps {
   currentUser: User;
   onSelectUser: (user: User) => void;
   onOpenBuiltWith: () => void;
-  onOpenJudgeGuide: () => void;
+  onOpenJudgeGuide?: () => void;
   onOpenPayPalSetup: () => void;
   onOpenPayPalToolkit: () => void;
+  onOpenGallery: () => void;
   onResetDemo: () => void;
 }
 
@@ -30,6 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenJudgeGuide,
   onOpenPayPalSetup,
   onOpenPayPalToolkit,
+  onOpenGallery,
   onResetDemo,
 }) => {
   return (
@@ -144,23 +145,25 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="hidden sm:inline">Built With</span>
           </button>
 
-          {/* Video & Judge Guide Button */}
+          {/* Devpost Media Gallery Button */}
           <button
-            onClick={onOpenJudgeGuide}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-sm shadow-blue-500/20 transition"
+            onClick={onOpenGallery}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 transition cursor-pointer"
+            title="Preview and Download 3:2 Ratio Devpost Media Images"
           >
-            <Video className="w-3.5 h-3.5 text-blue-200" />
-            <span className="hidden sm:inline">Judge Guide & Video</span>
-            <span className="sm:hidden">Judge</span>
+            <ImageIcon className="w-3.5 h-3.5 text-purple-400" />
+            <span className="hidden sm:inline">Gallery (3:2)</span>
+            <span className="sm:hidden">Gallery</span>
           </button>
 
-          {/* Reset Demo State Button */}
+          {/* Reset Demo State Button labeled Initial State */}
           <button
             onClick={onResetDemo}
-            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg border border-slate-800 transition"
-            title="Reset demo data to initial state"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-800 rounded-lg border border-slate-700/80 transition cursor-pointer"
+            title="Reset demo data to initial pristine state"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
+            <span>Initial State</span>
           </button>
         </div>
       </div>

@@ -40,6 +40,7 @@ import { BuiltWithModal } from './components/BuiltWithModal';
 import { JudgeGuideModal } from './components/JudgeGuideModal';
 import { PayPalSetupModal } from './components/PayPalSetupModal';
 import { PayPalToolkitModal } from './components/PayPalToolkitModal';
+import { ImageGalleryModal } from './components/ImageGalleryModal';
 import { PayPalService } from './services/paypalService';
 import { PolicyEngine, ProposedAction } from './services/policyEngine';
 import {
@@ -81,6 +82,7 @@ export default function App() {
   const [isJudgeGuideModalOpen, setIsJudgeGuideModalOpen] = useState(false);
   const [isPayPalSetupModalOpen, setIsPayPalSetupModalOpen] = useState(false);
   const [isPayPalToolkitModalOpen, setIsPayPalToolkitModalOpen] = useState(false);
+  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
   const [selectedPaymentRound, setSelectedPaymentRound] = useState<Round | null>(null);
   const [selectedPaymentPayee, setSelectedPaymentPayee] = useState<User | null>(null);
 
@@ -556,6 +558,7 @@ export default function App() {
         onOpenJudgeGuide={() => setIsJudgeGuideModalOpen(true)}
         onOpenPayPalSetup={() => setIsPayPalSetupModalOpen(true)}
         onOpenPayPalToolkit={() => setIsPayPalToolkitModalOpen(true)}
+        onOpenGallery={() => setIsGalleryModalOpen(true)}
         onResetDemo={handleResetDemo}
       />
 
@@ -755,6 +758,10 @@ export default function App() {
 
       {isPayPalToolkitModalOpen && (
         <PayPalToolkitModal onClose={() => setIsPayPalToolkitModalOpen(false)} />
+      )}
+
+      {isGalleryModalOpen && (
+        <ImageGalleryModal onClose={() => setIsGalleryModalOpen(false)} />
       )}
 
       {/* Footer */}
