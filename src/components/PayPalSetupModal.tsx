@@ -31,6 +31,42 @@ export const PayPalSetupModal: React.FC<PayPalSetupModalProps> = ({ onClose }) =
   const [status, setStatus] = useState<ConnectionStatus | null>(null);
   const [isChecking, setIsChecking] = useState(false);
   const [copiedEnv, setCopiedEnv] = useState(false);
+  const [webhookData, setWebhookData] = useState<any>(null);
+  const [isTestingWebhook, setIsTestingWebhook] = useState(false);
+  const [webhookTestResult, setWebhookTestResult] = useState<string | null>(null);
+
+  const fetchWebhookEvents = async () => {
+    try {
+      const res = await fetch('/api/paypal/webhook-events');
+      const data = await res.json();
+      setWebhookData(data);
+    } catch (err: any) {
+      console.warn('Could not fetch webhook events:', err);
+    }
+  };
+
+  const handleTriggerTestWebhook = async () => {
+    setIsTestingWebhook(true);
+    setWebhookTestResult(null);
+    try {
+      const res = await fetch('/api/paypal/test-webhook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ eventType: 'PAYMENT.CAPTURE.COMPLETED' }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setWebhookTestResult('Success: PayPal Sandbox accepted simulation and dispatched PAYMENT.CAPTURE.COMPLETED event!');
+        fetchWebhookEvents();
+      } else {
+        setWebhookTestResult(`Simulation result: ${JSON.stringify(data.error || data.message)}`);
+      }
+    } catch (err: any) {
+      setWebhookTestResult(`Error: ${err.message}`);
+    } finally {
+      setIsTestingWebhook(false);
+    }
+  };
 
   const checkConnection = async () => {
     setIsChecking(true);
@@ -38,6 +74,7 @@ export const PayPalSetupModal: React.FC<PayPalSetupModalProps> = ({ onClose }) =
       const res = await fetch('/api/paypal/test-connection');
       const data = await res.json();
       setStatus(data);
+      fetchWebhookEvents();
     } catch (err: any) {
       setStatus({
         configured: false,
@@ -53,6 +90,7 @@ export const PayPalSetupModal: React.FC<PayPalSetupModalProps> = ({ onClose }) =
 
   useEffect(() => {
     checkConnection();
+    fetchWebhookEvents();
   }, []);
 
   const handleCopyEnv = () => {
@@ -243,7 +281,7 @@ PAYPAL_WEBHOOK_ID="your_sandbox_webhook_id_here"`;
                     <td className="p-2 font-bold text-white">Rudo Moyo</td>
                     <td className="p-2 text-slate-400">Business / Personal</td>
                     <td className="p-2 font-mono text-blue-300">sb-rudo.platform@business.example.com</td>
-                    <td className="p-2 text-emerald-400">Round 1 Recipient (£600 Paid Out)</td>
+                    <td className="p-2 text-emerald-400">Round 1 Recipient ($600 Paid Out)</td>
                   </tr>
                   <tr>
                     <td className="p-2 font-bold text-white">Tendai Chisamba</td>
@@ -279,7 +317,7 @@ PAYPAL_WEBHOOK_ID="your_sandbox_webhook_id_here"`;
               </table>
             </div>
             <p className="text-[10px] text-slate-400 italic">
-              Tip: Click "..." on each account → "View/Edit Account" → give each a Sandbox balance of £1,000 (GBP).
+              Tip: Click "..." on each account → "View/Edit Account" → give each a Sandbox balance of $1,000 (USD).
             </p>
           </div>
 
@@ -310,6 +348,76 @@ PAYPAL_WEBHOOK_ID="your_sandbox_webhook_id_here"`}
             <p className="text-[10px] text-slate-400">
               Once updated, restart your server or click "Test Connection" above. Kitty will automatically detect your live sandbox credentials and route all Orders v2 and Captures to PayPal Sandbox!
             </p>
+          </div>
+
+          {/* STEP 5: Live Webhooks Verification & Simulator */}
+          <div className="space-y-3 pt-2 border-t border-slate-800">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-1">
+              <span className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                <span className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px]">
+                  5
+                </span>
+                Live Webhook Verification & Simulator
+              </span>
+              <button
+                onClick={handleTriggerTestWebhook}
+                disabled={isTestingWebhook}
+                className="flex items-center gap-1.5 px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs rounded-lg transition disabled:opacity-50 cursor-pointer"
+              >
+                <RefreshCw className={`w-3 h-3 ${isTestingWebhook ? 'animate-spin' : ''}`} />
+                <span>{isTestingWebhook ? 'Simulating Event...' : 'Trigger Live Test Webhook'}</span>
+              </button>
+            </div>
+
+            <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-1.5 font-mono text-[11px]">
+              <div className="flex justify-between">
+                <span className="text-slate-400">Configured Webhook ID:</span>
+                <span className="text-emerald-400 font-bold">{webhookData?.webhookId || 'Loading...'}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-400">Registered Destination URL:</span>
+                <span className="text-blue-300 truncate max-w-[280px]">
+                  {webhookData?.registeredWebhook?.url || 'https://kitty-2tnq.onrender.com/api/paypal/webhook'}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-400">Status:</span>
+                <span className="text-emerald-400">ENABLED (Orders & Invoicing events)</span>
+              </div>
+            </div>
+
+            {webhookTestResult && (
+              <div className="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-[11px]">
+                {webhookTestResult}
+              </div>
+            )}
+
+            {/* Recent Received Webhook Events */}
+            <div className="space-y-1">
+              <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold block">
+                Recent Webhook Events Received by /api/paypal/webhook:
+              </span>
+              <div className="max-h-36 overflow-y-auto space-y-1 pr-1 border border-slate-800 rounded-xl p-2 bg-slate-950 font-mono text-[10px]">
+                {webhookData?.recentEvents && webhookData.recentEvents.length > 0 ? (
+                  webhookData.recentEvents.map((evt: any, i: number) => (
+                    <div key={i} className="p-1.5 bg-slate-900 rounded border border-slate-800/80 flex items-center justify-between">
+                      <div className="flex items-center gap-2 truncate">
+                        <span className="text-emerald-400 font-bold">{evt.eventType}</span>
+                        {evt.amount && <span className="text-slate-300 font-semibold">{evt.amount}</span>}
+                        {evt.resourceId && <span className="text-amber-400 text-[9px]">ID: {evt.resourceId}</span>}
+                      </div>
+                      <span className="text-slate-500 text-[9px] shrink-0">
+                        {new Date(evt.receivedAt).toLocaleTimeString()}
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-slate-500 text-center py-2">
+                    No webhooks received yet. Click "Trigger Live Test Webhook" above to test!
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 

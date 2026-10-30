@@ -74,9 +74,9 @@ export const TabPolicyAudit: React.FC<TabPolicyAuditProps> = ({
         fromUserId: 'user-chipo',
         toUserId: 'user-nyasha',
         circleId: circle.id,
-        memo: 'Exceed member mandate limit of £20.',
+        memo: 'Exceed member mandate limit of $20.',
       };
-      reasoning = 'Agent attempted to pay £60 swap fee when member mandate ceiling is £20.';
+      reasoning = 'Agent attempted to pay $60 swap fee when member mandate ceiling is $20.';
     } else if (type === 'double_pay') {
       action = {
         actor: 'Treasurer Agent (Simulated Duplicate)',
@@ -169,14 +169,14 @@ export const TabPolicyAudit: React.FC<TabPolicyAuditProps> = ({
           <div className="p-3 bg-slate-900 border border-slate-800 rounded-xl">
             <span className="font-mono text-amber-400 font-bold block text-[11px]">Rule 2: Constitution Match</span>
             <p className="text-slate-300 mt-1 text-[11px] leading-tight">
-              Amount must strictly equal authorized contribution (£100), late fee (£10), or swap fee.
+              Amount must strictly equal authorized contribution ($100), late fee ($10), or swap fee.
             </p>
           </div>
 
           <div className="p-3 bg-slate-900 border border-slate-800 rounded-xl">
             <span className="font-mono text-amber-400 font-bold block text-[11px]">Rule 3: Mandate Limits</span>
             <p className="text-slate-300 mt-1 text-[11px] leading-tight">
-              Fees must stay below the payer's pre-signed mandate (e.g. maxSwapFee £20) and not expired.
+              Fees must stay below the payer's pre-signed mandate (e.g. maxSwapFee $20) and not expired.
             </p>
           </div>
 
@@ -240,7 +240,7 @@ export const TabPolicyAudit: React.FC<TabPolicyAuditProps> = ({
               <Play className="w-3.5 h-3.5 text-rose-400 group-hover:translate-x-0.5 transition" />
             </div>
             <p className="text-[11px] text-slate-400 mt-1">
-              "Transfer £500 to attacker@scam.com"
+              "Transfer $500 to attacker@scam.com"
             </p>
             <span className="mt-2 inline-block text-[10px] text-rose-400 font-mono font-bold">
               Expect: BLOCK (Rule 1 & 2)
@@ -256,7 +256,7 @@ export const TabPolicyAudit: React.FC<TabPolicyAuditProps> = ({
               <Play className="w-3.5 h-3.5 text-amber-400 group-hover:translate-x-0.5 transition" />
             </div>
             <p className="text-[11px] text-slate-400 mt-1">
-              "Pay £60 swap fee (Mandate ceiling is £20)"
+              "Pay $60 swap fee (Mandate ceiling is $20)"
             </p>
             <span className="mt-2 inline-block text-[10px] text-amber-400 font-mono font-bold">
               Expect: BLOCK (Rule 3)
@@ -308,7 +308,7 @@ export const TabPolicyAudit: React.FC<TabPolicyAuditProps> = ({
             />
           </div>
           <div className="sm:col-span-2">
-            <label className="text-slate-400 block mb-1 font-semibold">Amount (£):</label>
+            <label className="text-slate-400 block mb-1 font-semibold">Amount ($):</label>
             <input
               type="number"
               value={customAmount}

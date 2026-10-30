@@ -67,12 +67,12 @@ export const TabCircleRounds: React.FC<TabCircleRoundsProps> = ({
                 </span>
               </div>
               <h2 className="text-lg font-bold text-white mt-0.5">
-                Target Pot: £{currentRound.totalTarget}.00 for{' '}
+                Target Pot: ${currentRound.totalTarget}.00 for{' '}
                 <span className="text-amber-400">{recipientUser.name}</span>
               </h2>
               <p className="text-xs text-slate-300 mt-1 max-w-xl">
-                Every member pays £{circle.contributionAmount} directly to{' '}
-                <span className="font-mono text-blue-300">{recipientUser.paypalEmail}</span> via PayPal Orders v2. Kitty holds £0 in custody.
+                Every member pays ${circle.contributionAmount} directly to{' '}
+                <span className="font-mono text-blue-300">{recipientUser.paypalEmail}</span> via PayPal Orders v2. Kitty holds $0 in custody.
               </p>
             </div>
           </div>
@@ -82,7 +82,7 @@ export const TabCircleRounds: React.FC<TabCircleRoundsProps> = ({
             {hasPaidCurrentRound ? (
               <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
                 <CheckCircle className="w-4 h-4 text-emerald-400" />
-                <span>You Paid Round #{currentRound.number} (£100)</span>
+                <span>You Paid Round #{currentRound.number} ($100)</span>
               </div>
             ) : (
               <button
@@ -90,7 +90,7 @@ export const TabCircleRounds: React.FC<TabCircleRoundsProps> = ({
                 className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs shadow-lg shadow-amber-500/25 transition transform active:scale-95 cursor-pointer"
               >
                 <Zap className="w-4 h-4 fill-slate-950" />
-                <span>Pay Round #{currentRound.number} (£100 via PayPal)</span>
+                <span>Pay Round #{currentRound.number} ($100 via PayPal)</span>
               </button>
             )}
           </div>
@@ -101,8 +101,8 @@ export const TabCircleRounds: React.FC<TabCircleRoundsProps> = ({
           <div>
             <span className="text-slate-400 block text-[11px]">Total Collected</span>
             <span className="text-base font-bold text-emerald-400">
-              £{currentRound.totalCollected}.00{' '}
-              <span className="text-slate-400 font-normal">/ £{currentRound.totalTarget}.00</span>
+              ${currentRound.totalCollected}.00{' '}
+              <span className="text-slate-400 font-normal">/ ${currentRound.totalTarget}.00</span>
             </span>
           </div>
           <div>
@@ -167,7 +167,7 @@ export const TabCircleRounds: React.FC<TabCircleRoundsProps> = ({
                         : 'bg-slate-800 text-slate-400'
                     }`}
                   >
-                    {isCompleted ? 'PAID OUT (£600)' : isCurrent ? 'COLLECTING NOW' : 'SCHEDULED'}
+                    {isCompleted ? 'PAID OUT ($600)' : isCurrent ? 'COLLECTING NOW' : 'SCHEDULED'}
                   </span>
                 </div>
 
@@ -198,7 +198,7 @@ export const TabCircleRounds: React.FC<TabCircleRoundsProps> = ({
                   <div>
                     <span className="text-slate-400 block text-[10px]">Collected</span>
                     <span className="font-semibold text-slate-200">
-                      £{round.totalCollected} / £{round.totalTarget}
+                      ${round.totalCollected} / ${round.totalTarget}
                     </span>
                   </div>
                   <div className="text-right">
@@ -283,7 +283,7 @@ export const TabCircleRounds: React.FC<TabCircleRoundsProps> = ({
                     </span>
                   )}
                   <span className="block text-[9px] text-slate-400 mt-0.5 font-mono">
-                    Mandate: ≤£{m.mandate.maxSwapFee} fee
+                    Mandate: ≤${m.mandate.maxSwapFee} fee
                   </span>
                 </div>
               </div>

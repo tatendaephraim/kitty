@@ -37,14 +37,14 @@ export const JudgeGuideModal: React.FC<JudgeGuideModalProps> = ({
       actionTab: 'rounds',
       script:
         'Over 11 million South Africans save in informal stokvels, and millions more in the global diaspora run mukando and susu circles on WhatsApp and pure trust. Kitty replaces the vulnerable human treasurer with accountable AI agents, non-custodial PayPal settlements, and a deterministic policy engine.',
-      keyDemonstration: 'Shows the 6 diaspora members and the Round 2 pot collecting £400 of £600.',
+      keyDemonstration: 'Shows the 6 diaspora members and the Round 2 pot collecting $400 of $600.',
     },
     {
       time: '0:20 – 0:45',
       title: 'Scene 2: Multilingual AI Constitution',
       actionTab: 'constitution',
       script:
-        'Watch as an organizer types circle requirements in Chishona: "Tiri vanhu 6 muLondon, £100 pamwedzi...". Within seconds, Gemini AI drafts the legal bylaws in both English and Shona, plus machine-readable rulesJson that all 6 members cryptographically consent to.',
+        'Watch as an organizer types circle requirements in Chishona: "Tiri vanhu 6 muLondon, $100 pamwedzi...". Within seconds, Gemini AI drafts the legal bylaws in both English and Shona, plus machine-readable rulesJson that all 6 members cryptographically consent to.',
       keyDemonstration: 'Side-by-side English & Shona bylaws with verified consent registry.',
     },
     {
@@ -60,7 +60,7 @@ export const JudgeGuideModal: React.FC<JudgeGuideModalProps> = ({
       title: 'Scene 4: Autonomous Member Swap Negotiation (The Showpiece)',
       actionTab: 'swap',
       script:
-        'Chipo has an urgent boiler repair bill and needs liquidity. Her AI agent autonomously negotiates with Nyasha’s agent within pre-signed mandate limits. The agents converse, counter-offer, and converge on a fair £12 fee. Both humans tap approval, and PayPal settles the swap immediately.',
+        'Chipo has an urgent boiler repair bill and needs liquidity. Her AI agent autonomously negotiates with Nyasha’s agent within pre-signed mandate limits. The agents converse, counter-offer, and converge on a fair $12 fee. Both humans tap approval, and PayPal settles the swap immediately.',
       keyDemonstration: 'Multi-turn agent transcript, mandate compliance checks, dual human consent cards, and slot rotation.',
     },
     {
@@ -68,7 +68,7 @@ export const JudgeGuideModal: React.FC<JudgeGuideModalProps> = ({
       title: 'Scene 5: The Trust Moment (Policy Engine Blocks Attack)',
       actionTab: 'policy',
       script:
-        'An adversarial prompt injection attempts to transfer £500 to an unknown account attacker@scam.com. The deterministic policy engine intercepts it before it can reach PayPal. It instantly issues a BLOCK verdict with clear audit explanations.',
+        'An adversarial prompt injection attempts to transfer $500 to an unknown account attacker@scam.com. The deterministic policy engine intercepts it before it can reach PayPal. It instantly issues a BLOCK verdict with clear audit explanations.',
       keyDemonstration: 'Live attack simulator execution and Agent Action Ledger audit trail.',
     },
     {
@@ -227,7 +227,7 @@ APP_URL="http://localhost:3000"`;
                   </div>
                   <h5 className="font-bold text-white text-xs">Test Attack on Policy Engine</h5>
                   <p className="text-[11px] text-slate-400 leading-tight">
-                    Fire a prompt injection attempting to transfer £500 to a rogue wallet. Watch the Policy Engine halt the action with clear audit reasons.
+                    Fire a prompt injection attempting to transfer $500 to a rogue wallet. Watch the Policy Engine halt the action with clear audit reasons.
                   </p>
                   <button
                     onClick={() => {

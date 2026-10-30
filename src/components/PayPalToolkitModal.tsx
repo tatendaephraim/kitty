@@ -342,13 +342,13 @@ export const PayPalToolkitModal: React.FC<PayPalToolkitModalProps> = ({ onClose 
                     <tr>
                       <td className="p-2.5 font-bold text-white">Homwe</td>
                       <td className="p-2.5 text-slate-400">"Pocket / Bag"</td>
-                      <td className="p-2.5 text-emerald-300 font-medium">The Accumulated Pot (£600)</td>
+                      <td className="p-2.5 text-emerald-300 font-medium">The Accumulated Pot ($600)</td>
                       <td className="p-2.5 text-slate-300">The payout collected for that round's recipient.</td>
                     </tr>
                     <tr>
                       <td className="p-2.5 font-bold text-white">Chirango chekunonoka</td>
                       <td className="p-2.5 text-slate-400">"Late ritual / judgment"</td>
-                      <td className="p-2.5 text-emerald-300 font-medium">Grace Period Late Fee Penalty (£10)</td>
+                      <td className="p-2.5 text-emerald-300 font-medium">Grace Period Late Fee Penalty ($10)</td>
                       <td className="p-2.5 text-slate-300">Supportive agreed fee to preserve group accountability.</td>
                     </tr>
                     <tr>

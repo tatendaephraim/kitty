@@ -90,7 +90,7 @@ export const TabTreasurer: React.FC<TabTreasurerProps> = ({
             {roundContribs.filter((c) => c.status === 'CAPTURED').length} of {roundContribs.length}
           </div>
           <p className="text-xs text-emerald-400 mt-1">
-            £{currentRound.totalCollected} / £{currentRound.totalTarget} collected
+            ${currentRound.totalCollected} / ${currentRound.totalTarget} collected
           </p>
         </div>
 
@@ -111,10 +111,10 @@ export const TabTreasurer: React.FC<TabTreasurerProps> = ({
             Late Penalty Enforcement
           </span>
           <div className="mt-2 text-2xl font-bold text-slate-200">
-            £{circle.contributionAmount + 10} Total
+            ${circle.contributionAmount + 10} Total
           </div>
           <p className="text-xs text-slate-400 mt-1">
-            £10 fee applies only after day 5 expires (Policy Rule 2)
+            $10 fee applies only after day 5 expires (Policy Rule 2)
           </p>
         </div>
       </div>
@@ -192,7 +192,7 @@ export const TabTreasurer: React.FC<TabTreasurerProps> = ({
                       <div className="text-xs font-bold text-white flex items-center gap-2">
                         <span>{member.name}</span>
                         <span className="text-[10px] text-amber-400 font-mono">
-                          Pending: £{contrib.amount}.00
+                          Pending: ${contrib.amount}.00
                         </span>
                         <span className="text-[10px] bg-slate-800 text-slate-300 px-1.5 py-0.2 rounded font-mono">
                           Prefers: {member.language === 'sn' ? 'Chishona' : 'English'}
@@ -206,12 +206,12 @@ export const TabTreasurer: React.FC<TabTreasurerProps> = ({
                       <div className="mt-2 p-2.5 bg-slate-900 border border-slate-800/80 rounded-lg text-xs text-slate-300 max-w-xl">
                         {(reminderLanguage === 'bilingual' || reminderLanguage === 'sn') && (
                           <p className="italic text-amber-200/90 text-[11px]">
-                            "Kwaziwai {member.name.split(' ')[0]}. Tiri kukuyeuchidzai zvakanaka nezve mupurupo weRound #{currentRound.number} unokwana £{contrib.amount} unodiwa na Tendai musi wa 1. Kana pane zviri kukunetsai, AI Agent yenyu inogona kukumbira kuchinjanisa nzvimbwana."
+                            "Kwaziwai {member.name.split(' ')[0]}. Tiri kukuyeuchidzai zvakanaka nezve mupurupo weRound #{currentRound.number} unokwana ${contrib.amount} unodiwa na Tendai musi wa 1. Kana pane zviri kukunetsai, AI Agent yenyu inogona kukumbira kuchinjanisa nzvimbwana."
                           </p>
                         )}
                         {(reminderLanguage === 'bilingual' || reminderLanguage === 'en') && (
                           <p className="text-slate-300 text-[11px] mt-1">
-                            "Hello {member.name.split(' ')[0]}, this is a friendly reminder for Round #{currentRound.number} (£{contrib.amount}) due to Tendai. 3 days remain in the grace window. If you require emergency liquidity, your AI Agent can request a slot swap."
+                            "Hello {member.name.split(' ')[0]}, this is a friendly reminder for Round #{currentRound.number} (${contrib.amount}) due to Tendai. 3 days remain in the grace window. If you require emergency liquidity, your AI Agent can request a slot swap."
                           </p>
                         )}
                       </div>
@@ -272,7 +272,7 @@ export const TabTreasurer: React.FC<TabTreasurerProps> = ({
 
             <div className="mt-4 text-xs space-y-1 text-slate-300 font-mono">
               <div>Payer: {selectedInvoiceUser.name}</div>
-              <div>Amount: £{circle.contributionAmount}.00 GBP</div>
+              <div>Amount: ${circle.contributionAmount}.00 USD</div>
               <div className="text-emerald-400">Direct Payee: {currentRound.recipientUserId === 'user-tendai' ? 'sb-tendai.member@personal.example.com' : 'Recipient Wallet'}</div>
             </div>
 

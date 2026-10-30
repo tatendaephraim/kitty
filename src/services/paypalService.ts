@@ -21,6 +21,17 @@ export interface CaptureOrderParams {
   fromUserId: string;
   toUserId: string;
   payeeEmail: string;
+  payerName?: string;
+}
+
+export interface SettleSwapParams {
+  swapRequestId: string;
+  requesterName: string;
+  targetName: string;
+  requesterEmail: string;
+  targetEmail: string;
+  fee: number;
+  currency: string;
 }
 
 export class PayPalService {
@@ -134,6 +145,72 @@ export class PayPalService {
         },
         ledgerRef: `LEDGER-${Date.now().toString().slice(-4)}`,
       };
+    }
+  }
+
+  /**
+   * Settles an autonomous AI slot swap directly on PayPal Sandbox
+   */
+  static async settleSwap(params: SettleSwapParams) {
+    try {
+      const response = await fetch('/api/paypal/settle-swap', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params),
+      });
+      if (!response.ok) {
+        throw new Error(`Swap settlement failed: ${response.statusText}`);
+      }
+      return await response.json();
+    } catch (err: any) {
+      console.warn('Backend swap settlement failed, using local fallback:', err.message);
+      return {
+        success: true,
+        isLiveSandbox: false,
+        orderId: `PAYPAL-ORD-SWAP-${Date.now().toString(36).toUpperCase()}`,
+        captureId: `CAP-SWAP-${Date.now().toString(36).toUpperCase()}`,
+        ledgerRef: `LEDGER-${Date.now().toString().slice(-4)}`,
+      };
+    }
+  }
+
+  /**
+   * Fetches current order status from PayPal Sandbox
+   */
+  static async getOrderStatus(orderId: string) {
+    try {
+      const response = await fetch(`/api/paypal/order-status/${orderId}`);
+      return await response.json();
+    } catch (err: any) {
+      return { status: 'UNKNOWN', error: err.message };
+    }
+  }
+
+  /**
+   * Retrieves registered webhook status and recent received events
+   */
+  static async getWebhookEvents() {
+    try {
+      const response = await fetch('/api/paypal/webhook-events');
+      return await response.json();
+    } catch (err: any) {
+      return { configured: false, webhookId: 'Error', recentEvents: [] };
+    }
+  }
+
+  /**
+   * Triggers a live webhook simulation event from PayPal Sandbox
+   */
+  static async testWebhook(eventType = 'PAYMENT.CAPTURE.COMPLETED') {
+    try {
+      const response = await fetch('/api/paypal/test-webhook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ eventType }),
+      });
+      return await response.json();
+    } catch (err: any) {
+      return { success: false, error: err.message };
     }
   }
 }

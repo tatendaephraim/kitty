@@ -58,8 +58,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             <div className="mt-3 flex items-baseline justify-between">
               <div>
                 <div className="text-2xl font-bold text-white tracking-tight">
-                  £{currentRound.totalCollected}{' '}
-                  <span className="text-xs font-normal text-slate-400">/ £{currentRound.totalTarget}</span>
+                  ${currentRound.totalCollected}{' '}
+                  <span className="text-xs font-normal text-slate-400">/ ${currentRound.totalTarget}</span>
                 </div>
                 <div className="text-[11px] text-slate-400 mt-0.5">
                   Collecting for recipient <strong className="text-slate-200">Tendai Chisamba</strong>
@@ -107,7 +107,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             <div>
               <div className="text-xs font-semibold text-white">0% Custodial Risk</div>
               <div className="text-[11px] text-slate-400 leading-tight mt-0.5">
-                Direct member-to-member PayPal routing; Kitty holds £0.
+                Direct member-to-member PayPal routing; Kitty holds $0.
               </div>
             </div>
           </div>

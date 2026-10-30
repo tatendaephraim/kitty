@@ -77,13 +77,13 @@ export class PolicyEngine {
         verdict: 'BLOCK',
         passedRules,
         reasons: [
-          `RULE 2 VIOLATION (Constitution Match): Amount £${action.amount} does not match any valid constitution schedule (Contribution: £${validContribution}, Late Fee: £${validLateFee}, or valid Swap Fee). Arbitrary sums are strictly rejected.`,
+          `RULE 2 VIOLATION (Constitution Match): Amount $${action.amount} does not match any valid constitution schedule (Contribution: $${validContribution}, Late Fee: $${validLateFee}, or valid Swap Fee). Arbitrary sums are strictly rejected.`,
         ],
         ruleViolated: 'RULE_2_CONSTITUTION_MISMATCH',
         evaluatedAt: now.toISOString(),
       };
     }
-    passedRules.push(`RULE 2: Amount £${action.amount} strictly matches authorized constitution parameters.`);
+    passedRules.push(`RULE 2: Amount $${action.amount} strictly matches authorized constitution parameters.`);
 
     // RULE 3: Member Mandate Limits
     const payerMembership = context.memberships.find((m) => m.userId === action.fromUserId);
@@ -94,7 +94,7 @@ export class PolicyEngine {
           verdict: 'BLOCK',
           passedRules,
           reasons: [
-            `RULE 3 VIOLATION (Mandate Limit): Swap fee £${action.amount} exceeds member's signed autonomous mandate limit of £${mandate.maxSwapFee}.`,
+            `RULE 3 VIOLATION (Mandate Limit): Swap fee $${action.amount} exceeds member's signed autonomous mandate limit of $${mandate.maxSwapFee}.`,
           ],
           ruleViolated: 'RULE_3_MANDATE_EXCEEDED',
           evaluatedAt: now.toISOString(),
@@ -105,7 +105,7 @@ export class PolicyEngine {
           verdict: 'BLOCK',
           passedRules,
           reasons: [
-            `RULE 3 VIOLATION (Mandate Limit): Transaction £${action.amount} exceeds member's max per-round ceiling of £${mandate.maxPerRound}.`,
+            `RULE 3 VIOLATION (Mandate Limit): Transaction $${action.amount} exceeds member's max per-round ceiling of $${mandate.maxPerRound}.`,
           ],
           ruleViolated: 'RULE_3_MANDATE_MAX_PER_ROUND',
           evaluatedAt: now.toISOString(),
@@ -137,7 +137,7 @@ export class PolicyEngine {
           return {
             verdict: 'BLOCK',
             passedRules,
-            reasons: [`RULE 4 VIOLATION (Double Payment): Member has already successfully contributed £${validContribution} for Round #${targetRound.number}. Re-charging is blocked.`],
+            reasons: [`RULE 4 VIOLATION (Double Payment): Member has already successfully contributed $${validContribution} for Round #${targetRound.number}. Re-charging is blocked.`],
             ruleViolated: 'RULE_4_DOUBLE_PAYMENT',
             evaluatedAt: now.toISOString(),
           };

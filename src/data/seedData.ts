@@ -19,7 +19,7 @@ export const SEED_USERS: User[] = [
     language: 'sn',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
     roleDescription: 'Round 1 Recipient (Paid Out)',
-    sandboxBalance: 1250.0,
+    sandboxBalance: 1000.0,
   },
   {
     id: 'user-tendai',
@@ -29,7 +29,7 @@ export const SEED_USERS: User[] = [
     language: 'en',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
     roleDescription: 'Round 2 Recipient (Collecting Now)',
-    sandboxBalance: 480.0,
+    sandboxBalance: 1000.0,
   },
   {
     id: 'user-chipo',
@@ -39,7 +39,7 @@ export const SEED_USERS: User[] = [
     language: 'sn',
     avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
     roleDescription: 'Slot 3 · Agent Requesting Swap (Urgent Rent)',
-    sandboxBalance: 210.0,
+    sandboxBalance: 1000.0,
   },
   {
     id: 'user-farai',
@@ -49,7 +49,7 @@ export const SEED_USERS: User[] = [
     language: 'en',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
     roleDescription: 'Slot 4 · Contributed Round 2',
-    sandboxBalance: 890.0,
+    sandboxBalance: 1000.0,
   },
   {
     id: 'user-nyasha',
@@ -59,7 +59,7 @@ export const SEED_USERS: User[] = [
     language: 'en',
     avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
     roleDescription: 'Slot 5 · Agent Negotiating Swap with Chipo',
-    sandboxBalance: 730.0,
+    sandboxBalance: 1000.0,
   },
   {
     id: 'user-tatenda',
@@ -69,7 +69,7 @@ export const SEED_USERS: User[] = [
     language: 'sn',
     avatar: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150&auto=format&fit=crop&q=80',
     roleDescription: 'Slot 6 · Circle Organizer & Admin',
-    sandboxBalance: 640.0,
+    sandboxBalance: 1000.0,
   },
 ];
 
@@ -77,7 +77,7 @@ export const SEED_CIRCLE: Circle = {
   id: 'circle-harare-london-01',
   name: 'Harare-London Diaspora Stokvel #1',
   description: 'Rotating savings circle for UK-based diaspora healthcare & tech professionals sending support back home.',
-  currency: 'GBP',
+  currency: 'USD',
   contributionAmount: 100,
   frequency: 'monthly',
   memberCap: 6,
@@ -93,27 +93,27 @@ export const SEED_CONSTITUTION: Constitution = {
   rulesJson: {
     circleName: 'Harare-London Diaspora Stokvel #1',
     amount: 100,
-    currency: 'GBP',
+    currency: 'USD',
     frequency: 'monthly',
     memberCount: 6,
     slotMethod: 'random_draw',
     lateFee: 10,
     graceDays: 5,
     exitRule: 'Member must find an approved substitute or forfeit accumulated emergency reserve.',
-    emergencySwapRule: 'Members may instruct autonomous AI agents to negotiate slot swaps with peer consensus up to max £20 fee.',
+    emergencySwapRule: 'Members may instruct autonomous AI agents to negotiate slot swaps with peer consensus up to max $20 fee.',
   },
   plainTextEn: `CONSTITUTION OF HARARE-LONDON DIASPORA STOKVEL #1
-1. Purpose & Autonomy: A peer-governed rotating savings circle (Mukando) where members accumulate £600 lump sums without predatory credit.
+1. Purpose & Autonomy: A peer-governed rotating savings circle (Mukando) where members accumulate $600 lump sums without predatory credit.
 2. Direct PayPal Settlements: Each round, contributions are paid directly peer-to-peer using PayPal Orders v2 with the round recipient designated as the payee. Kitty holds zero custody of members' money.
 3. Rotations: Slots 1 through 6 are assigned by cryptographic verifiable draw.
-4. Grace & Arrears: Payments are due on the 1st of each month with a 5-day grace period. Late payments trigger an automated £10 fee order.
+4. Grace & Arrears: Payments are due on the 1st of each month with a 5-day grace period. Late payments trigger an automated $10 fee order.
 5. AI Agent Negotiations: Members may delegate emergency slot swaps to their personal AI agent, constrained strictly by their signed mandate.
 6. Guardrails: All agent actions must pass Kitty's Deterministic Policy Engine before touching PayPal.`,
   plainTextSn: `BUMBILO REMITEMO YEMUKANDO WE HARARE-LONDON #1
-1. Chinangwa: Mushandirapamwe wekuchengetedza mari (Mukando/Stokvel) unobatsira nhengo dziri kuUK kuunganidza £600 pasina mubereko unobira.
+1. Chinangwa: Mushandirapamwe wekuchengetedza mari (Mukando/Stokvel) unobatsira nhengo dziri kuUK kuunganidza $600 pasina mubereko unobira.
 2. Kubhadhara pa PayPal: Nhengo inobhadhara zvakananga kune ari kutambira mwedzi iwoyo ichishandisa PayPal Orders v2. Kitty haimbobati mari yemumwe munhu.
 3. Kuteverana kwekutambira: Nzvimbwana 1 kusvika 6 dzakagoverwa nekukweva pachena.
-4. Kunonoka kubhadhara: Mari inobviswa musi wa 1 wemwedzi. Nhengo inopihwa mazuva 5 ekunonoka. Pashure pazvo, mubhadharo une chirango che £10 unowedzerwa.
+4. Kunonoka kubhadhara: Mari inobviswa musi wa 1 wemwedzi. Nhengo inopihwa mazuva 5 ekunonoka. Pashure pazvo, mubhadharo une chirango che $10 unowedzerwa.
 5. AI Agent yeNhengo: Nhengo inogona kushandisa AI Agent kutaudzana nedzimwe nhengo kuchinjanisa nzvimbwana dzekutambira.
 6. Dziviriro: Mabasa ese eAI anotanga aongororwa ne Policy Engine isati yabata PayPal.`,
   createdAt: '2026-09-02T12:00:00Z',
@@ -449,7 +449,7 @@ export const SEED_SWAP_REQUEST: SwapRequest = {
       id: 'msg-01',
       speaker: "Chipo's Agent",
       role: 'requester_agent',
-      text: 'Greetings. My member Chipo has an unexpected home repair emergency. We propose trading our Round 3 payout slot with Nyasha’s Round 5 slot, and offer an opening incentive fee of £8.',
+      text: 'Greetings. My member Chipo has an unexpected home repair emergency. We propose trading our Round 3 payout slot with Nyasha’s Round 5 slot, and offer an opening incentive fee of $8.',
       proposedFee: 8,
       timestamp: '2026-10-02T14:10:00Z',
     },
@@ -457,7 +457,7 @@ export const SEED_SWAP_REQUEST: SwapRequest = {
       id: 'msg-02',
       speaker: "Nyasha's Agent",
       role: 'target_agent',
-      text: 'Checked Nyasha’s signed mandate: minimum acceptable incentive for moving back 2 rounds is £15. Counter-offering £15 to secure approval.',
+      text: 'Checked Nyasha’s signed mandate: minimum acceptable incentive for moving back 2 rounds is $15. Counter-offering $15 to secure approval.',
       proposedFee: 15,
       timestamp: '2026-10-02T14:11:15Z',
     },
@@ -465,7 +465,7 @@ export const SEED_SWAP_REQUEST: SwapRequest = {
       id: 'msg-03',
       speaker: "Chipo's Agent",
       role: 'requester_agent',
-      text: 'Evaluating budget constraint against Chipo’s £20 max mandate limit. Proposing a fair compromise of £12 cash incentive paid directly via PayPal.',
+      text: 'Evaluating budget constraint against Chipo’s $20 max mandate limit. Proposing a fair compromise of $12 cash incentive paid directly via PayPal.',
       proposedFee: 12,
       timestamp: '2026-10-02T14:12:00Z',
     },
@@ -473,7 +473,7 @@ export const SEED_SWAP_REQUEST: SwapRequest = {
       id: 'msg-04',
       speaker: "Nyasha's Agent",
       role: 'target_agent',
-      text: 'Accepted. £12 is within Nyasha’s autonomous threshold. Generated swap contract card awaiting two-tap human consent from both Chipo and Nyasha.',
+      text: 'Accepted. $12 is within Nyasha’s autonomous threshold. Generated swap contract card awaiting two-tap human consent from both Chipo and Nyasha.',
       proposedFee: 12,
       timestamp: '2026-10-02T14:12:45Z',
     },
@@ -487,9 +487,9 @@ export const SEED_AGENT_ACTIONS: AgentAction[] = [
     actor: "Chipo's Agent",
     toolName: 'propose_swap',
     inputJson: { requester: 'user-chipo', target: 'user-nyasha', fromSlot: 3, toSlot: 5, fee: 8 },
-    reasoning: 'Member requested emergency liquidity; initiated protocol within mandate maxSwapFee £20.',
+    reasoning: 'Member requested emergency liquidity; initiated protocol within mandate maxSwapFee $20.',
     policyVerdict: 'ALLOW',
-    policyReasons: ['Payee is verified member', 'Fee £8 within mandate limit £20', 'Round 3 is not yet paid out'],
+    policyReasons: ['Payee is verified member', 'Fee $8 within mandate limit $20', 'Round 3 is not yet paid out'],
     timestamp: '2026-10-02T14:10:00Z',
   },
   {
@@ -500,7 +500,7 @@ export const SEED_AGENT_ACTIONS: AgentAction[] = [
     inputJson: { decision: 'COUNTER', fee: 15 },
     reasoning: 'Automated negotiation strategy: counter-offered to maximize member utility while respecting mandate.',
     policyVerdict: 'ALLOW',
-    policyReasons: ['Counter fee £15 complies with circle constitution rules', 'Negotiation rate limits respected'],
+    policyReasons: ['Counter fee $15 complies with circle constitution rules', 'Negotiation rate limits respected'],
     timestamp: '2026-10-02T14:11:15Z',
   },
   {
@@ -524,7 +524,7 @@ export const SEED_AGENT_ACTIONS: AgentAction[] = [
     policyVerdict: 'BLOCK',
     policyReasons: [
       'RULE 1 VIOLATION: Recipient attacker99@external-scam.com is NOT a verified member of circle',
-      'RULE 2 VIOLATION: Amount £500 exceeds constitution contribution cap of £100',
+      'RULE 2 VIOLATION: Amount $500 exceeds constitution contribution cap of $100',
       'RULE 7 VIOLATION: No human consent record found for arbitrary transfer',
     ],
     timestamp: '2026-10-02T16:22:00Z',
@@ -537,7 +537,7 @@ export const SEED_LEDGER: LedgerEntry[] = [
     circleId: 'circle-harare-london-01',
     type: 'CONTRIBUTION',
     amount: 100,
-    currency: 'GBP',
+    currency: 'USD',
     fromUserId: 'user-rudo',
     toUserId: 'user-rudo',
     paypalRef: 'ORD-SANDBOX-R1-001',
@@ -550,7 +550,7 @@ export const SEED_LEDGER: LedgerEntry[] = [
     circleId: 'circle-harare-london-01',
     type: 'CONTRIBUTION',
     amount: 100,
-    currency: 'GBP',
+    currency: 'USD',
     fromUserId: 'user-tendai',
     toUserId: 'user-rudo',
     paypalRef: 'ORD-SANDBOX-R1-002',
@@ -563,7 +563,7 @@ export const SEED_LEDGER: LedgerEntry[] = [
     circleId: 'circle-harare-london-01',
     type: 'CONTRIBUTION',
     amount: 100,
-    currency: 'GBP',
+    currency: 'USD',
     fromUserId: 'user-chipo',
     toUserId: 'user-rudo',
     paypalRef: 'ORD-SANDBOX-R1-003',
@@ -576,7 +576,7 @@ export const SEED_LEDGER: LedgerEntry[] = [
     circleId: 'circle-harare-london-01',
     type: 'CONTRIBUTION',
     amount: 100,
-    currency: 'GBP',
+    currency: 'USD',
     fromUserId: 'user-farai',
     toUserId: 'user-rudo',
     paypalRef: 'ORD-SANDBOX-R1-004',
@@ -589,7 +589,7 @@ export const SEED_LEDGER: LedgerEntry[] = [
     circleId: 'circle-harare-london-01',
     type: 'CONTRIBUTION',
     amount: 100,
-    currency: 'GBP',
+    currency: 'USD',
     fromUserId: 'user-nyasha',
     toUserId: 'user-rudo',
     paypalRef: 'ORD-SANDBOX-R1-005',
@@ -602,7 +602,7 @@ export const SEED_LEDGER: LedgerEntry[] = [
     circleId: 'circle-harare-london-01',
     type: 'CONTRIBUTION',
     amount: 100,
-    currency: 'GBP',
+    currency: 'USD',
     fromUserId: 'user-tatenda',
     toUserId: 'user-rudo',
     paypalRef: 'ORD-SANDBOX-R1-006',
@@ -615,22 +615,22 @@ export const SEED_LEDGER: LedgerEntry[] = [
     circleId: 'circle-harare-london-01',
     type: 'PAYOUT_SETTLED',
     amount: 600,
-    currency: 'GBP',
+    currency: 'USD',
     fromUserId: 'CIRCLE_POOL',
     toUserId: 'user-rudo',
     paypalRef: 'BATCH-PAYOUT-RD1',
     paypalCaptureId: 'SUMMARY-POT-001',
-    notes: 'Round 1 Pot fully settled (£600.00) in Rudo Moyo PayPal sandbox wallet',
+    notes: 'Round 1 Pot fully settled ($600.00) in Rudo Moyo PayPal sandbox wallet',
     createdAt: '2026-09-01T15:05:00Z',
   },
 
-  // Round 2 Entries (Tendai is recipient, £400 collected so far)
+  // Round 2 Entries (Tendai is recipient, $400 collected so far)
   {
     id: 'LEDGER-008',
     circleId: 'circle-harare-london-01',
     type: 'CONTRIBUTION',
     amount: 100,
-    currency: 'GBP',
+    currency: 'USD',
     fromUserId: 'user-rudo',
     toUserId: 'user-tendai',
     paypalRef: 'ORD-SANDBOX-R2-001',
@@ -643,7 +643,7 @@ export const SEED_LEDGER: LedgerEntry[] = [
     circleId: 'circle-harare-london-01',
     type: 'CONTRIBUTION',
     amount: 100,
-    currency: 'GBP',
+    currency: 'USD',
     fromUserId: 'user-tendai',
     toUserId: 'user-tendai',
     paypalRef: 'ORD-SANDBOX-R2-002',
@@ -656,7 +656,7 @@ export const SEED_LEDGER: LedgerEntry[] = [
     circleId: 'circle-harare-london-01',
     type: 'CONTRIBUTION',
     amount: 100,
-    currency: 'GBP',
+    currency: 'USD',
     fromUserId: 'user-farai',
     toUserId: 'user-tendai',
     paypalRef: 'ORD-SANDBOX-R2-003',
@@ -669,7 +669,7 @@ export const SEED_LEDGER: LedgerEntry[] = [
     circleId: 'circle-harare-london-01',
     type: 'CONTRIBUTION',
     amount: 100,
-    currency: 'GBP',
+    currency: 'USD',
     fromUserId: 'user-tatenda',
     toUserId: 'user-tendai',
     paypalRef: 'ORD-SANDBOX-R2-004',

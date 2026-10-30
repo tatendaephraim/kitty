@@ -161,7 +161,7 @@ export const TabSwapNegotiation: React.FC<TabSwapNegotiationProps> = ({
             <div className="flex justify-between text-slate-300">
               <span className="text-slate-400">Agent Mandate Ceiling:</span>
               <span className="font-mono text-emerald-400 font-semibold">
-                Max £{requesterMem.mandate.maxSwapFee} thank-you fee
+                Max ${requesterMem.mandate.maxSwapFee} thank-you fee
               </span>
             </div>
           </div>
@@ -201,13 +201,13 @@ export const TabSwapNegotiation: React.FC<TabSwapNegotiationProps> = ({
             <div className="flex justify-between text-slate-300">
               <span className="text-slate-400">Autonomous Threshold:</span>
               <span className="font-mono text-blue-300 font-semibold">
-                Min £{targetMem.mandate.minIncentive} incentive required
+                Min ${targetMem.mandate.minIncentive} incentive required
               </span>
             </div>
             <div className="flex justify-between text-slate-300">
               <span className="text-slate-400">Auto-Approve Below:</span>
               <span className="font-mono text-slate-400">
-                £{targetMem.mandate.autoApproveSwapBelow}
+                ${targetMem.mandate.autoApproveSwapBelow}
               </span>
             </div>
           </div>
@@ -224,7 +224,7 @@ export const TabSwapNegotiation: React.FC<TabSwapNegotiationProps> = ({
             </span>
           </div>
           <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
-            Status: {swapRequest.status} (£{swapRequest.agreedFee} agreed fee)
+            Status: {swapRequest.status} (${swapRequest.agreedFee} agreed fee)
           </span>
         </div>
 
@@ -268,7 +268,7 @@ export const TabSwapNegotiation: React.FC<TabSwapNegotiationProps> = ({
                   {msg.proposedFee !== undefined && (
                     <div className="mt-1.5 inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-900 border border-slate-700 font-mono text-[11px] text-emerald-400">
                       <span>Proposed Incentive:</span>
-                      <strong>£{msg.proposedFee}.00</strong>
+                      <strong>${msg.proposedFee}.00</strong>
                     </div>
                   )}
                 </div>
@@ -289,7 +289,7 @@ export const TabSwapNegotiation: React.FC<TabSwapNegotiationProps> = ({
               </span>
             </div>
             <h3 className="text-base font-bold text-white mt-1">
-              Swap Round #{swapRequest.fromSlot} for Round #{swapRequest.toSlot} (Fee: £{swapRequest.agreedFee}.00 via PayPal)
+              Swap Round #{swapRequest.fromSlot} for Round #{swapRequest.toSlot} (Fee: ${swapRequest.agreedFee}.00 via PayPal)
             </h3>
           </div>
 
@@ -325,7 +325,7 @@ export const TabSwapNegotiation: React.FC<TabSwapNegotiationProps> = ({
                 )}
               </div>
               <p className="text-[11px] text-slate-400 mt-0.5">
-                Approve paying £{swapRequest.agreedFee} fee to Nyasha via PayPal
+                Approve paying ${swapRequest.agreedFee} fee to Nyasha via PayPal
               </p>
             </div>
 
@@ -353,7 +353,7 @@ export const TabSwapNegotiation: React.FC<TabSwapNegotiationProps> = ({
                 )}
               </div>
               <p className="text-[11px] text-slate-400 mt-0.5">
-                Approve relinquishing Slot #{swapRequest.fromSlot} & receiving £{swapRequest.agreedFee}
+                Approve relinquishing Slot #{swapRequest.fromSlot} & receiving ${swapRequest.agreedFee}
               </p>
             </div>
 
@@ -435,7 +435,7 @@ export const TabSwapNegotiation: React.FC<TabSwapNegotiationProps> = ({
 
               <div>
                 <label className="text-slate-300 font-semibold block mb-1">
-                  Chipo's Mandate Max Swap Fee (£):
+                  Chipo's Mandate Max Swap Fee ($):
                 </label>
                 <input
                   type="number"

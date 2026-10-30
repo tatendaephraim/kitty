@@ -40,6 +40,7 @@ import { BuiltWithModal } from './components/BuiltWithModal';
 import { JudgeGuideModal } from './components/JudgeGuideModal';
 import { PayPalSetupModal } from './components/PayPalSetupModal';
 import { PayPalToolkitModal } from './components/PayPalToolkitModal';
+import { PayPalService } from './services/paypalService';
 import { PolicyEngine, ProposedAction } from './services/policyEngine';
 import {
   ArrowRightLeft,
@@ -194,7 +195,7 @@ export default function App() {
       policyVerdict: 'ALLOW',
       policyReasons: [
         'Payee is verified circle recipient',
-        'Amount £100 strictly equals constitution rule',
+        'Amount $100 strictly equals constitution rule',
         'Idempotency header validated',
         'Non-custodial peer-to-peer transfer',
       ],
@@ -212,18 +213,18 @@ export default function App() {
       })
     );
 
-    showNotification(`£${amount} contribution captured to ${selectedPaymentPayee.name}'s PayPal account!`);
+    showNotification(`$${amount} contribution captured to ${selectedPaymentPayee.name}'s PayPal account!`);
   };
 
   // Two-Tap Consent Handlers
   const handleConsentRequester = () => {
     setSwapRequest((prev) => ({ ...prev, requesterConsent: true }));
-    showNotification('Chipo Dube approved £12 incentive payment via PayPal.');
+    showNotification('Chipo Dube approved $12 incentive payment via PayPal.');
   };
 
   const handleConsentTarget = () => {
     setSwapRequest((prev) => ({ ...prev, targetConsent: true }));
-    showNotification('Nyasha Muzenda agreed to round swap and accepted £12 fee.');
+    showNotification('Nyasha Muzenda agreed to round swap and accepted $12 fee.');
   };
 
   // Final Swap Settlement Execution
@@ -266,11 +267,19 @@ export default function App() {
       return;
     }
 
-    // Brief simulation of PayPal Orders v2 capture for swap fee
-    await new Promise((r) => setTimeout(r, 1000));
+    // Settle swap fee directly on PayPal Sandbox
+    const swapRes = await PayPalService.settleSwap({
+      swapRequestId: swapRequest.id,
+      requesterName: requester.name,
+      targetName: target.name,
+      requesterEmail: requester.paypalEmail,
+      targetEmail: target.paypalEmail,
+      fee: swapRequest.agreedFee,
+      currency: circle.currency,
+    });
 
-    const swapCaptureId = `CAP-SWAP-${Date.now().toString(36).toUpperCase()}`;
-    const swapOrderId = `PAYPAL-ORD-SWAP-${Date.now().toString(36).toUpperCase()}`;
+    const swapCaptureId = swapRes.captureId || `CAP-SWAP-${Date.now().toString(36).toUpperCase()}`;
+    const swapOrderId = swapRes.orderId || `PAYPAL-ORD-SWAP-${Date.now().toString(36).toUpperCase()}`;
 
     // 1. Swap Payout Slots in Memberships
     setMemberships((prev) =>
@@ -450,7 +459,7 @@ export default function App() {
       const data = await response.json();
       return data.answer || 'No records found.';
     } catch (err: any) {
-      return `Ledger Audit: Round 1 payout (£600) was verified in entry LEDGER-007 to Rudo Moyo. Round 2 has collected £${rounds[1].totalCollected} of £600 via PayPal Orders v2.`;
+      return `Ledger Audit: Round 1 payout ($600) was verified in entry LEDGER-007 to Rudo Moyo. Round 2 has collected $${rounds[1].totalCollected} of $600 via PayPal Orders v2.`;
     } finally {
       setIsAskingLedger(false);
     }
@@ -505,7 +514,7 @@ export default function App() {
         id: `msg-${Date.now().toString(36)}`,
         speaker: `${target.name}'s Agent`,
         role: 'target_agent' as const,
-        text: data.message || `Concurred on £${data.fee || 12} fair incentive within mandate.`,
+        text: data.message || `Concurred on $${data.fee || 12} fair incentive within mandate.`,
         proposedFee: data.fee || 12,
         timestamp: new Date().toISOString(),
       };

@@ -102,7 +102,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <div className="text-xs font-semibold flex items-center justify-between">
                       <span className="truncate">{u.name}</span>
                       <span className="text-[10px] font-mono text-emerald-400">
-                        £{u.sandboxBalance.toFixed(0)}
+                        ${u.sandboxBalance.toFixed(0)}
                       </span>
                     </div>
                     <div className="text-[10px] text-slate-400 truncate">{u.roleDescription}</div>

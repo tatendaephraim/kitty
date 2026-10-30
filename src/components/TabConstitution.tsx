@@ -29,7 +29,7 @@ export const TabConstitution: React.FC<TabConstitutionProps> = ({
   const [selectedLang, setSelectedLang] = useState<'bilingual' | 'en' | 'sn'>('bilingual');
   const [activeJsonTab, setActiveJsonTab] = useState<'bylaws' | 'rulesJson'>('bylaws');
   const [draftPrompt, setDraftPrompt] = useState(
-    '6 of us healthcare workers in Manchester, £100 a month on the 1st via PayPal, random draw for slots, 5-day grace period with £10 penalty, autonomous AI agent slot swaps permitted.'
+    '6 of us healthcare workers in Manchester, $100 a month on the 1st via PayPal, random draw for slots, 5-day grace period with $10 penalty, autonomous AI agent slot swaps permitted.'
   );
   const [draftLang, setDraftLang] = useState('bilingual');
   const [copied, setCopied] = useState(false);
@@ -43,12 +43,12 @@ export const TabConstitution: React.FC<TabConstitutionProps> = ({
   const handlePresetPrompt = (preset: 'en' | 'sn') => {
     if (preset === 'sn') {
       setDraftPrompt(
-        'Tiri vanhu 6 vanoshanda muUK, tinobvisa £100 pamwedzi ichibhadharwa zvakananga pa PayPal. Nzvimbwana dzekutambira dzinokweverwa pachena. Nhengo inopihwa mazuva 5 ekunonoka pashure pacho pane chirango che £10.'
+        'Tiri vanhu 6 vanoshanda muUK, tinobvisa $100 pamwedzi ichibhadharwa zvakananga pa PayPal. Nzvimbwana dzekutambira dzinokweverwa pachena. Nhengo inopihwa mazuva 5 ekunonoka pashure pacho pane chirango che $10.'
       );
       setDraftLang('sn');
     } else {
       setDraftPrompt(
-        '6 tech consultants in London saving £100 monthly. Direct PayPal peer payments. 5-day grace period, £10 late fee, autonomous AI slot swaps allowed.'
+        '6 tech consultants in London saving $100 monthly. Direct PayPal peer payments. 5-day grace period, $10 late fee, autonomous AI slot swaps allowed.'
       );
       setDraftLang('en');
     }

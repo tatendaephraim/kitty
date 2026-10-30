@@ -33,7 +33,7 @@ export const TabMoneyLedger: React.FC<TabMoneyLedgerProps> = ({
   const [chatHistory, setChatHistory] = useState<{ q: string; a: string; time: string }[]>([
     {
       q: 'Has Rudo Moyo received the Round 1 payout?',
-      a: 'Yes. Round 1 payout of £600.00 was fully settled to Rudo Moyo (User ID: user-rudo). Verified via 6 peer contributions (LEDGER-001 through LEDGER-006, Capture Refs: CAP-RD1-01 to CAP-RD1-06) and recorded in aggregate entry LEDGER-007.',
+      a: 'Yes. Round 1 payout of $600.00 was fully settled to Rudo Moyo (User ID: user-rudo). Verified via 6 peer contributions (LEDGER-001 through LEDGER-006, Capture Refs: CAP-RD1-01 to CAP-RD1-06) and recorded in aggregate entry LEDGER-007.',
       time: '14:20',
     },
   ]);
@@ -169,7 +169,7 @@ export const TabMoneyLedger: React.FC<TabMoneyLedgerProps> = ({
             value={chatQuestion}
             onChange={(e) => setChatQuestion(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleAsk()}
-            placeholder="Ask anything: Where is my £100? Who received slot 1?..."
+            placeholder="Ask anything: Where is my $100? Who received slot 1?..."
             className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-teal-500"
           />
           <button
@@ -307,7 +307,7 @@ export const TabMoneyLedger: React.FC<TabMoneyLedgerProps> = ({
                       </span>
                     </td>
                     <td className="py-3 px-3 text-right font-mono font-bold text-white whitespace-nowrap">
-                      £{row.amount.toFixed(2)}
+                      ${row.amount.toFixed(2)}
                     </td>
                     <td className="py-3 px-3 font-medium text-slate-200">
                       {getUserName(row.fromUserId)}
